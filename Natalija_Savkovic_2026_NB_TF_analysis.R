@@ -273,7 +273,7 @@
     ) +
     theme_minimal()
 
-
+#Figure 3A: volcano plot of differential TF activity
 #Volcano plot with coloured
   aim1_TF_volcano_coloured <- mutate(aim1_TF_combined,
                                   significance = case_when(
@@ -338,7 +338,7 @@
     ) +
     theme_minimal()
 
-
+#Figure 3B: volcano plot of differential gene expression
   #Volcano plot with coloured
   aim1_GE_volcano_coloured <- mutate(aim1_GE_combined,
                                   significance = case_when(
@@ -657,7 +657,7 @@
     ) +
     theme_minimal()
 
-
+#Figure 4: volcano plot of differential dependency
 #Volcano plot with coloured
   aim2_volcano_coloured <- mutate(aim2_combined,
                                   significance = case_when(
@@ -781,6 +781,7 @@
 
               ### Aim 3.1 - Kaplan-Meier Survival Analysis ###
 
+#Figure 5: Kaplan-Meier curves for MYCN activity
 #stratify patients into high vs low activity groups using a median split
     #used to gather the log-rank p-value of all TFs and visualization for individual TFs
 
@@ -848,7 +849,7 @@
   )
 
 
-#Kaplan-Meier curves for STOX1 and ZNF143, the strongest prognostic TFs that were not identity TFs (Figures 8 and 9)
+#Kaplan-Meier curves for STOX1 and ZNF143, the strongest prognostic TFs that were not identity TFs (Figures 7 and 8)
 
 #STOX1 - EFS
   stox1_EFS_data <- filter(kocak_TF_long_EFS, TF == "STOX1")
@@ -1009,7 +1010,7 @@
 
 
                     ### Aim 3.3 - Visualisation ###
-
+#Figure 6: volcano plots of Cox hazard ratios
   #Volcano plot: log(hazard ratio) vs significance, coloured - EFS
   aim3_EFS_volcano_coloured <- mutate(aim3_EFS_combined,
                                       significance = case_when(
@@ -1940,7 +1941,7 @@
   #In the scores, positive Aim 2 = MES-dependent; flipping it makes red = ADRN-dependent,
   #so the identity and viability columns use the same colour direction. The ranking is unchanged.
 
-#Figure 11: heatmap of signed aim-level scores for the top 30 TFs by consensus score
+#Figure 10: heatmap of signed aim-level scores for the top 30 TFs by consensus score
 
   top_tfs <- head(aim4_final_table, 30)$TF
 
@@ -1968,7 +1969,7 @@
   )
 
 
-#Figure 12: top 30 strongly ADRN and top 30 strongly MES TFs, ranked by identity score - as two separate heatmaps
+#Figure 11: top 30 strongly ADRN and top 30 strongly MES TFs, ranked by identity score - as two separate heatmaps
   top30_adrn_tfs <- head(arrange(aim4_final_table, desc(aim1_score)), 30)$TF
   top30_mes_tfs  <- head(arrange(aim4_final_table, aim1_score), 30)$TF
 
@@ -2024,7 +2025,7 @@
   )
 
 
-#Figure 13: heatmap of the nine key TFs from Aims 1 to 3, regardless of consensus rank
+#Figure 12: heatmap of the nine key TFs from Aims 1 to 3, regardless of consensus rank
   key_candidate_tfs <- c("PHOX2B", "ASCL1", "FEV", "ZEB2", "MYCN", "MYC", "HAND2", "SOX11", "EGR2")
 
   candidate_data <- filter(aim4_master_capped_weighted, TF %in% key_candidate_tfs)
@@ -2052,7 +2053,7 @@
 
                   ### Aim 4.4 - Additional Visualisation ###
 
-#Figure 10: rank-change slope chart, baseline rank vs final (capped + weighted) rank
+#Figure 9: rank-change slope chart, baseline rank vs final (capped + weighted) rank
   #shows every TF that made the top 20 under either method, connecting its two ranks with a
   #line - visualises the MYC/MYCN swap and SOX11's decline directly, rather than as a table
 
@@ -2090,7 +2091,7 @@
     theme_minimal()
 
 
-#Figure 14: bubble plot of identity vs prognosis for all 756 TFs, sized and coloured by viability strength
+#Figure 13: bubble plot of identity vs prognosis for all 756 TFs, sized and coloured by viability strength
   #shows all 756 TFs at once, rather than a pre-filtered top-N list, so the key TFs can
   #be seen in the context of the full landscape
 
